@@ -1,9 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Domain\ValueObject;
 
 use App\Domain\Exception\InvalidCommand;
+use App\Domain\Exception\InvalidMove;
 use App\Domain\Exception\InvalidPositionInGrid;
 
 final class Grid
@@ -13,7 +15,7 @@ final class Grid
     public function __construct(
         private Width $width,
         private Height $height,
-    ){
+    ) {
         $this->mower = null;
     }
 
@@ -27,24 +29,28 @@ final class Grid
         return $this->height;
     }
 
-    public function setMower(Position $position, Orientation $orientation): void
+    public function setMower(Mower $mower): void
     {
-        $this->validate($position);
-        $this->mower = new Mower($position, $orientation);
+        $this->validate($mower->position());
+        $this->mower = $mower;
     }
 
-    public function process(string $commands): void
+    public function process(string $commands): string
     {
-        $letters = str_split($commands);
-        foreach($letters as $letter) {
-            $this->execute($letter);
+        try {
+            $letters = str_split($commands);
+            foreach ($letters as $letter) {
+                $this->execute($letter);
+            }
+        } catch (\Exception $e) {
+            return $e->getMessage();
         }
-        printf((string)$this->mower);
+        return (string)$this->mower;
     }
 
     private function validate(Position $position): void
     {
-        if(
+        if (
             $position->posX() > $this->width->value()
             || $position->posY() > $this->height->value()
         ) {
@@ -54,12 +60,14 @@ final class Grid
 
     private function execute(string $letter): void
     {
-        match($letter) {
-            'L' => $this->mower->turnLeft(),
-            'R' => $this->mower->turnRight(),
-            'M' => $this->mower->move(),
-            default => throw new InvalidCommand($letter)
-        };
+        try {
+            match ($letter) {
+                'L' => $this->mower->turnLeft(),
+                'R' => $this->mower->turnRight(),
+                'M' => $this->mower->move(),
+            };
+        } catch (\Exception) {
+            throw new InvalidMove($letter, $this->mower->position(), $this->mower->orientation());
+        }
     }
-
 }

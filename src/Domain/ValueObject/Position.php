@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Domain\ValueObject;
@@ -11,16 +12,16 @@ final class Position
     private int $posY;
     public function __construct(int $x, int $y)
     {
-      $this->validate($x);
-      $this->validate($y);
+        $this->validate($x);
+        $this->validate($y);
 
-      $this->posX = $x;
-      $this->posY = $y;
+        $this->posX = $x;
+        $this->posY = $y;
     }
 
     private function validate(int $value): void
     {
-        if($value < 0 ) {
+        if ($value < 0) {
             throw new InvalidPosition($value);
         }
     }
@@ -34,5 +35,4 @@ final class Position
     {
         return $this->posY;
     }
-
 }

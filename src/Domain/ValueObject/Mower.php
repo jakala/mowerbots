@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Domain\ValueObject;
@@ -28,19 +29,19 @@ final class Mower implements \Stringable
         $actualX = $this->position->posX();
         $actualY = $this->position->posY();
 
-        match($this->orientation->value()) {
+        match ($this->orientation->value()) {
             'N' => $actualY++,
             'S' => $actualY--,
             'E' => $actualX++,
             'W' => $actualX--,
         };
 
-       $this->position = new Position($actualX, $actualY);
+        $this->position = new Position($actualX, $actualY);
     }
 
     public function turnLeft(): void
     {
-        $newOrientation  = match($this->orientation->value()) {
+        $newOrientation  = match ($this->orientation->value()) {
             'N' => 'W',
             'W' => 'S',
             'S' => 'E',
@@ -53,7 +54,7 @@ final class Mower implements \Stringable
 
     public function turnRight(): void
     {
-        $newOrientation  = match($this->orientation->value()) {
+        $newOrientation  = match ($this->orientation->value()) {
             'N' => 'E',
             'E' => 'S',
             'S' => 'W',
@@ -67,7 +68,7 @@ final class Mower implements \Stringable
     public function __toString(): string
     {
         return sprintf(
-            '%d %d %s\n',
+            '%d %d %s',
             $this->position->posX(),
             $this->position->posY(),
             $this->orientation->value()

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Domain\ValueObject;
@@ -22,7 +23,7 @@ final class Height
 
     private function validatePositiveHeight(int $value): void
     {
-        if($value < 0) {
+        if ($value < 0) {
             throw new InvalidGridHeight($value);
         }
     }
@@ -31,5 +32,4 @@ final class Height
     {
         return $this->height;
     }
-
 }

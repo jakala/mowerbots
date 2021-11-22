@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Domain\ValueObject;
@@ -33,7 +34,7 @@ final class Orientation
 
     private function validateOneLetter(string $value): void
     {
-        if(strlen($value) !== 1 ) {
+        if (strlen($value) !== 1) {
             throw new InvalidOrientationLength($value);
         }
     }
@@ -41,7 +42,7 @@ final class Orientation
     private function validateValidOrientation(string $value): void
     {
         if (!in_array($value, ['N', 'S', 'E', 'W'])) {
-           throw new InvalidOrientationLetter($value);
+            throw new InvalidOrientationLetter($value);
         }
     }
 }

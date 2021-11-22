@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Domain\ValueObject;
@@ -22,7 +23,7 @@ final class Width
 
     private function validatePositiveWidth(int $value): void
     {
-        if($value < 0) {
+        if ($value < 0) {
             throw new InvalidGridWidth($value);
         }
     }

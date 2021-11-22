@@ -35,7 +35,8 @@ robot se sale de la parcela o si efectua un movimiento no autorizado.
   * para simular la entrada de datos, vamos a generar un comando que se encargará de leer un archivo de ordenes. En dicho archivo
 estará codificada la primera linea (que indica el tamaño de la parcela), asi como la posicion/orientacion inicial del robot y luego los
 movimientos asociados. De salida por pantalla se indicará la posición final de cada uno de los robots
-
+  * Puede darse el caso de que un robot "pase" por la posición donde hay otro robot? segun la secuencia de ejemplo no "existe" el
+segundo robot, por lo que asumo que el robot secundario no existe, y no puede chocar con el primero tampoco.
 
 ## Lista TODO
 - Dominio de definicion del robot, asi como movimientos y orientacion. 
