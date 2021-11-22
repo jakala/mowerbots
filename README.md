@@ -16,6 +16,32 @@ posicion 5,4 y orientado hacia el Este.
 
 Se incluye un docker-compose para poder probar directamente la aplicación. 
 
+## Uso
+La propuesta de solucion es un comando de consola de symfony, denominado `mower:process-file`. Este comando lee el archivo
+que le indiquemos en la entrada y procesa las lineas, mostrando por pantalla la posición final de cada mower que se ha definido
+en el archivo.
+
+Para ejecutar el comando:
+```
+bin/console mower:process-file example.txt
+```
+
+el archivo de ejemplo `example.txt` contiene las siguientes instrucciones:
+
+  * 5 5 define el tamaño de la malla de cesped.
+  * 1 2 N es la posición y orientacion del primer robot
+  * LMLMLMLMM es la secuencia de comandos que ejecuta el robot
+  * 3 3 E es la posicion y orientacion del segundo robot
+  * MMRMMRMRRM la secuencia de comandos que ejecuta el segundo robot.
+
+la salida de la ejecución de la linea de comandos con este archivo es:
+```
+Procesando archivo example.txt
+------------------
+1 3 N
+5 1 E
+```
+
 ## Requisitos
 - php 8.0 instalado en local
 - Docker y Docker-compose
@@ -39,6 +65,4 @@ movimientos asociados. De salida por pantalla se indicará la posición final de
 segundo robot, por lo que asumo que el robot secundario no existe, y no puede chocar con el primero tampoco.
 
 ## Lista TODO
-- Dominio de definicion del robot, asi como movimientos y orientacion. 
-- Servicios de movimiento, interpretación de orden inicial y definicion de salidas
 - infraestructura de comando, asi como lectura de archivo de ordenes y su ejecucion.

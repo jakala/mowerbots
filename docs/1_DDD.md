@@ -18,6 +18,7 @@ src
 │   ├── Exception
 │   ├── Repository
 │   └── Service
+│   └── Command
 └── Shared
 ```
 ## Domain
@@ -43,6 +44,5 @@ Dentro de esta carpeta tenemos la parte lógica de los servicios que se requiere
 - `Repository`: las implementaciones de los repositories que acceden y guardan datos. Deben implementar las
   interfaces de dominio
   `Service`: inicialmente en blanco, esta carpeta está reservada para los servicios a este nivel.
-  
-## Shared
-Aquí situaremos ciertas partes de configuración del propio framework, para desacoplarnos de este último. 
+  `Command`: Infraestructura de comandos de consola de symfony En ella indicamos el comando de solucion del problema.
+
