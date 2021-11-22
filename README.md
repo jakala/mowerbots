@@ -66,3 +66,5 @@ segundo robot, por lo que asumo que el robot secundario no existe, y no puede ch
 
 ## Lista TODO
 - infraestructura de comando, asi como lectura de archivo de ordenes y su ejecucion.
+
+## FIN
